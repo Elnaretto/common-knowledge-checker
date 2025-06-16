@@ -62,12 +62,12 @@ HTML_FORM = """
     <label>Факт:</label>
     <input type="text" name="fact" required>
 
-    <label><input type="checkbox" name="criteria" value="generations_known"> Известно многим поколениям</label>
+    <label><input type="checkbox" name="criteria" value="generations_known"> Известно трем поколениям 25 лет, 45 лет, 65 лет </label>
     <label><input type="checkbox" name="criteria" value="in_school_program"> В школьной программе</label>
     <label><input type="checkbox" name="criteria" value="media_frequency_high"> Часто упоминается в СМИ</label>
     <label><input type="checkbox" name="criteria" value="pop_culture_presence"> Присутствует в поп-культуре</label>
     <label><input type="checkbox" name="criteria" value="public_opinion_known"> Известно по опросам</label>
-    <label><input type="checkbox" name="criteria" value="national_symbol"> Национальный символ</label>
+    <label><input type="checkbox" name="criteria" value="wordstat"> Вордсат Яндекса по РФ > 10 тыс в месяц</label>
 
     <br><br>
     <button type="submit">Проверить</button>
