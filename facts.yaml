@@ -1,0 +1,17 @@
+- fact: "Юрий Гагарин — первый человек в космосе"
+  criteria:
+    generations_known: true
+    in_school_program: true
+    media_frequency_high: true
+    pop_culture_presence: true
+    public_opinion_known: true
+    national_symbol: true
+
+- fact: "Сергей Брин — сооснователь Google"
+  criteria:
+    generations_known: false
+    in_school_program: false
+    media_frequency_high: true
+    pop_culture_presence: true
+    public_opinion_known: false
+    national_symbol: false
