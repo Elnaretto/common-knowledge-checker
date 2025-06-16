@@ -1,45 +1,59 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <title>Common Knowledge Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 2rem;
+            max-width: 600px;
+            margin: auto;
+        }
+        h1 {
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .criteria {
+            margin-bottom: 1rem;
+        }
+        .result {
+            font-weight: bold;
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            color: green;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-    <h1>Common Knowledge Checker</h1>
-
-    <form method="post">
-        <label>Fact:<br />
-            <textarea name="fact" rows="2" cols="50" required></textarea>
+    <h1>🔍 Common Knowledge Checker</h1>
+    <form method="POST">
+        <label>
+            Fact:
+            <input type="text" name="fact" required style="width: 100%; padding: 0.5rem;" />
         </label>
-        <br /><br />
-
-        <label><input type="checkbox" name="generations_known" /> Known by several generations</label><br />
-        <label><input type="checkbox" name="in_school_program" /> Included in school program</label><br />
-        <label><input type="checkbox" name="media_frequency_high" /> High media frequency</label><br />
-        <label><input type="checkbox" name="pop_culture_presence" /> Presence in pop culture</label><br />
-        <label><input type="checkbox" name="public_opinion_known" /> Known by public opinion</label><br />
-        <label><input type="checkbox" name="national_symbol" /> National symbol</label><br /><br />
-
-        <button type="submit">Check Common Knowledge</button>
+        <div class="criteria">
+            <strong>Check all that apply:</strong><br>
+            {% for key in criteria_keys %}
+                <label>
+                    <input type="checkbox" name="criteria" value="{{ key }}"> {{ key.replace("_", " ").capitalize() }}
+                </label>
+            {% endfor %}
+        </div>
+        <button type="submit">Check CK</button>
     </form>
 
     {% if result %}
-        <h2>Result:</h2>
-        <p><strong>Fact:</strong> {{ result.fact }}</p>
-        <p>Criteria met: {{ result.score }}/6 — 
-            {% if result.is_ck %}
-                ✅ Common Knowledge
-            {% else %}
-                ❌ Not Common Knowledge
-            {% endif %}
-        </p>
-        <ul>
-            {% for key, value in result.criteria.items() %}
-                <li>{{ key.replace('_', ' ') }}: {{ "✓" if value else "✗" }}</li>
-            {% endfor %}
-        </ul>
+        <div class="result">{{ result }}</div>
+    {% elif error %}
+        <div class="error">{{ error }}</div>
     {% endif %}
 </body>
 </html>
